@@ -8,4 +8,4 @@ def test_read_root():
 
 def test_read_item():
     item_id = 1
-    assert read_item(item_id, "hoge") == {"item_id": item_id, "q": "hoge"}
+    assert read_item(item_id=item_id, q="hoge") == {"item_id": item_id, "q": "hoge"}
