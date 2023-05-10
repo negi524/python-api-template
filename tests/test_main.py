@@ -1,4 +1,4 @@
-from python_starter.main import add_one
+from python_api_template.main import add_one
 
 
 def test_add_one():

@@ -1,16 +1,16 @@
 [tool.poetry]
-name = "python-starter"
+name = "python-api-template"
 version = "1.0.0"
 description = "Template for Python project"
 authors = ["negi524 <egtnrumpbiizarre.info@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 packages = [
-    { include = "application_setting", from = "python_starter" }
+    { include = "application_setting", from = "python_api_template" }
   ]
 
 [tool.poetry.scripts]
-dev = "python_starter.main:main"
+dev = "python_api_template.main:main"
 
 [tool.poetry.dependencies]
 python = "^3.11"
