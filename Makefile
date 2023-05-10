@@ -1,5 +1,5 @@
 main: log/ python_api_template/.env
-	poetry run dev
+	poetry run uvicorn python_api_template.main:app --reload
 
 test:
 	poetry run pytest tests/
