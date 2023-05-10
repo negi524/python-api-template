@@ -1,5 +1,11 @@
-from python_api_template.main import add_one
+from python_api_template.main import read_root
+from python_api_template.main import read_item
 
 
-def test_add_one():
-    assert add_one(1) == 2
+def test_read_root():
+    assert read_root() == {"Hello": "World"}
+
+
+def test_read_item():
+    item_id = 1
+    assert read_item(item_id, "hoge") == {"item_id": item_id, "q": "hoge"}
