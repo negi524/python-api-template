@@ -1,0 +1,38 @@
+version: 1
+formatters:
+  # 基本のログフォーマット
+  simple:
+    format: "%(asctime)s %(name)s %(levelname)s %(message)s"
+handlers:
+  # ファイル出力
+  file:
+    class: logging.FileHandler
+    level: INFO
+    formatter: simple
+    filename: "./log/default.log" # デフォルトのログファイル名
+  # ログローテーションを利用した日付ファイル出力
+  rotatefile:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: INFO
+    formatter: simple
+    filename: "./log/app.log"
+    # 1日おき
+    when: "MIDNIGHT"
+    interval: 1
+    # 20ファイル以上は自動削除
+    backupCount: 20
+  # 標準出力
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: simple
+    stream: ext://sys.stdout
+loggers:
+  # main.pyで利用するlogger
+  main:
+    level: INFO
+    handlers: [rotatefile, console]
+    propagate: no
+root:
+  level: DEBUG
+  handlers: [console]

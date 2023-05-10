@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "python-starter"
+version = "1.0.0"
+description = "Template for Python project"
+authors = ["negi524 <egtnrumpbiizarre.info@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [
+    { include = "application_setting", from = "python_starter" }
+  ]
+
+[tool.poetry.scripts]
+dev = "python_starter.main:main"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.28.2"
+PyYAML = "^6.0"
+python-dotenv = "^1.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.1"
+black = "^23.1.0"
+mypy = "^1.0.1"
+types-pyyaml = "^6.0.12.8"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
