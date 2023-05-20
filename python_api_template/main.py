@@ -4,6 +4,8 @@ import application_setting.my_credential as mycredential
 from typing import Optional
 from fastapi import FastAPI, Query, Path, Body
 from pydantic import BaseModel, Field
+from dto.item_response import ItemResponse
+from dto.item_query import ItemQuery
 
 # loggerを取得
 logger: Logger = mylogger.get_logger("main")
@@ -29,14 +31,6 @@ def read_root():
     return {"Hello": "World"}
 
 
-class ItemQuery(BaseModel):
-    item_id: int = Field(title="アイテムID")
-    q: str = Field(title="クエリ")
-
-    class Config:
-        schema_extra = {"example": {"item_id": 123, "q": "query"}}
-
-
 @app.get("/items/{item_id}", tags=["item"], response_model=ItemQuery)
 def read_item(
     item_id: int = Path(description="アイテムID"),
@@ -54,8 +48,9 @@ def read_item(
     return ItemQuery(item_id=item_id, q=q)
 
 
-@app.put("/items/{item_id}", tags=["item"])
+@app.put("/items/{item_id}", tags=["item"], response_model=ItemResponse)
 def update_item(
     item_id: int = Path(description="アイテムID"), item: Item = Body(description="アイテムの内容")
 ):
-    return {"item_name": item.name, "item_id": item_id}
+    response = ItemResponse(item.name, item_id)
+    return response
