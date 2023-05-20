@@ -3,20 +3,13 @@ from logging import Logger
 import application_setting.my_credential as mycredential
 from typing import Optional
 from fastapi import FastAPI, Query, Path, Body
-from pydantic import BaseModel, Field
-from dto.item_response import ItemResponse
-from dto.item_query import ItemQuery
+from dto.item import Item, ItemResponse, ItemQuery
+
 
 # loggerを取得
 logger: Logger = mylogger.get_logger("main")
 
 app = FastAPI()
-
-
-class Item(BaseModel):
-    name: str = Field(title="アイテム名")
-    price: int = Field(title="アイテムの価格")
-    is_offer: Optional[bool] = Field(default=None, title="オファー状態有無")
 
 
 @app.get("/", tags=["sample"])
@@ -52,5 +45,5 @@ def read_item(
 def update_item(
     item_id: int = Path(description="アイテムID"), item: Item = Body(description="アイテムの内容")
 ):
-    response = ItemResponse(item.name, item_id)
+    response = ItemResponse(item_name=item.name, item_id=item_id)
     return response
