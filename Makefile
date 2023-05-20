@@ -8,4 +8,4 @@ format:
 	poetry run black python_api_template/ tests/
 
 type-check:
-	poetry run mypy python_api_template/
+	poetry run mypy -p python_api_template

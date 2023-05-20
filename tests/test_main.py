@@ -1,7 +1,7 @@
 from python_api_template.main import read_root
 from python_api_template.main import read_item
 from python_api_template.main import update_item
-from python_api_template.main import Item
+from python_api_template.dto.item import Item
 
 
 def test_read_root():
